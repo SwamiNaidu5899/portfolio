@@ -1,47 +1,63 @@
 import React from 'react';
-import { Grid, Typography, Avatar, Paper } from '@mui/material';
+import { Grid, Typography, Paper } from '@mui/material';
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPython, FaDocker, FaGithub, FaDatabase, FaAws } from 'react-icons/fa';
-import { Height } from '@mui/icons-material';
 
 const TechStack = () => {
-  // Custom style for each icon container
+  // Custom style for each icon container with hover effect
   const iconStyle = {
-    backgroundColor: 'rgb(55, 65, 81)',
-    padding: '15px',
+    backgroundColor: 'rgb(17, 24, 39)',
+    padding: '20px',
     borderRadius: '8px',
     textAlign: 'center',
     marginBottom: '10px',
-    Height : '10vh', 
-    width : '40%'
+    height: '120px', // Adjust height
+    width: '120px',  // Adjust width
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Smooth transition
   };
 
+  const handleHover = (e) => {
+    e.target.style.transform = 'translateY(-10px)'; // Shift horizontally to the right by 10px
+    e.target.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)'; // Shadow on hover
+  };
+  
+  const handleMouseLeave = (e) => {
+    e.target.style.transform = 'translateY(0)'; // Reset to original position
+    e.target.style.boxShadow = 'none'; // Remove shadow
+  };
+  
+
   return (
-    <div style={{ padding: '20px',background: 'rgb(17, 24, 39)',
-    }}>
-      <Typography variant="h4" gutterBottom align="center">
+    <div style={{ padding: '20px', background: 'rgb(17, 24, 39)', color: 'white' }}>
+      <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: 700, fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' } }}>
         My Tech Stack
       </Typography>
 
       <Grid container spacing={4} justifyContent="center">
         {/* Frontend Section */}
-        <Grid item xs={12} md={3} >
-          <Paper elevation={3} sx={{background : 'rgb(31, 41, 55) ',padding: '20px', textAlign: 'center' }}>
-            <Typography variant="h6">Frontend</Typography>
+        <Grid item xs={12} sm={6} md={3}>
+          <Paper elevation={3} sx={{ background: 'rgb(31, 41, 55)', padding: '20px', textAlign: 'center', height: '50vh' }}>
+            <Typography variant="h6" sx={{color : 'white', fontWeight: 600, fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' } }}>
+              Frontend
+            </Typography>
             <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
-              <Grid item style={iconStyle}>
-                <FaHtml5 size={30} color="#f44336" />
+              <Grid item style={iconStyle} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
+                <FaHtml5 size={40} color="#f44336" />
                 <Typography variant="body2" style={{ color: '#fff' }}>HTML5</Typography>
               </Grid>
-              <Grid item style={iconStyle}>
-                <FaCss3Alt size={30} color="#1976d2" />
+              <Grid item style={iconStyle} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
+                <FaCss3Alt size={40} color="#1976d2" />
                 <Typography variant="body2" style={{ color: '#fff' }}>CSS3</Typography>
               </Grid>
-              <Grid item style={iconStyle}>
-                <FaJs size={30} color="#ffeb3b" />
+              <Grid item style={iconStyle} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
+                <FaJs size={40} color="#ffeb3b" />
                 <Typography variant="body2" style={{ color: '#fff' }}>JavaScript</Typography>
               </Grid>
-              <Grid item style={iconStyle}>
-                <FaReact size={30} color="#61dafb" />
+              <Grid item style={iconStyle} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
+                <FaReact size={40} color="#61dafb" />
                 <Typography variant="body2" style={{ color: '#fff' }}>React</Typography>
               </Grid>
             </Grid>
@@ -49,16 +65,18 @@ const TechStack = () => {
         </Grid>
 
         {/* Backend Section */}
-        <Grid item xs={12} md={3}>
-        <Paper elevation={3} sx={{background : 'rgb(31, 41, 55) ',padding: '20px', textAlign: 'center' }}>
-        <Typography variant="h6">Backend</Typography>
-        <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
-        <Grid item style={iconStyle}>
-                <FaNodeJs size={30} color="#3e8e41" />
+        <Grid item xs={12} sm={6} md={3}>
+          <Paper elevation={3} sx={{ background: 'rgb(31, 41, 55)', padding: '20px', textAlign: 'center', height: '50vh' }}>
+          <Typography variant="h6" sx={{color : 'white', fontWeight: 600, fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' } }}>
+          Backend
+            </Typography>
+            <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
+              <Grid item style={iconStyle} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
+                <FaNodeJs size={40} color="#3e8e41" />
                 <Typography variant="body2" style={{ color: '#fff' }}>Node.js</Typography>
               </Grid>
-              <Grid item style={iconStyle}>
-                <FaPython size={30} color="#306998" />
+              <Grid item style={iconStyle} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
+                <FaPython size={40} color="#306998" />
                 <Typography variant="body2" style={{ color: '#fff' }}>Python</Typography>
               </Grid>
             </Grid>
@@ -66,16 +84,18 @@ const TechStack = () => {
         </Grid>
 
         {/* Tools Section */}
-        <Grid item xs={12} md={3}>
-        <Paper elevation={3} sx={{background : 'rgb(31, 41, 55) ',padding: '20px', textAlign: 'center' }}>
-        <Typography variant="h6">Tools</Typography>
-        <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
-        <Grid item style={iconStyle}>
-                <FaDocker size={30} color="#0f4b5f" />
+        <Grid item xs={12} sm={6} md={3}>
+          <Paper elevation={3} sx={{ background: 'rgb(31, 41, 55)', padding: '20px', textAlign: 'center', height: '50vh' }}>
+          <Typography variant="h6" sx={{color : 'white', fontWeight: 600, fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' } }}>
+          Tools
+            </Typography>
+            <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
+              <Grid item style={iconStyle} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
+                <FaDocker size={40} color="#0f4b5f" />
                 <Typography variant="body2" style={{ color: '#fff' }}>Docker</Typography>
               </Grid>
-              <Grid item style={iconStyle}>
-                <FaGithub size={30} color="#3e4b48" />
+              <Grid item style={iconStyle} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
+                <FaGithub size={40} color="#3e4b48" />
                 <Typography variant="body2" style={{ color: '#fff' }}>GitHub</Typography>
               </Grid>
             </Grid>
@@ -83,16 +103,18 @@ const TechStack = () => {
         </Grid>
 
         {/* Database Section */}
-        <Grid item xs={12} md={3}>
-        <Paper elevation={3} sx={{background : 'rgb(31, 41, 55) ',padding: '20px', textAlign: 'center' }}>
-        <Typography variant="h6">Database</Typography>
-        <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
-        <Grid item style={iconStyle}>
-                <FaDatabase size={30} color="#4caf50" />
+        <Grid item xs={12} sm={6} md={3}>
+          <Paper elevation={3} sx={{ background: 'rgb(31, 41, 55)', padding: '20px', textAlign: 'center', height: '50vh' }}>
+          <Typography variant="h6" sx={{color : 'white', fontWeight: 600, fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' } }}>
+          Database
+            </Typography>
+            <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
+              <Grid item style={iconStyle} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
+                <FaDatabase size={40} color="#4caf50" />
                 <Typography variant="body2" style={{ color: '#fff' }}>MongoDB</Typography>
               </Grid>
-              <Grid item style={iconStyle}>
-                <FaAws size={30} color="#ff9900" />
+              <Grid item style={iconStyle} onMouseEnter={handleHover} onMouseLeave={handleMouseLeave}>
+                <FaAws size={40} color="#ff9900" />
                 <Typography variant="body2" style={{ color: '#fff' }}>AWS</Typography>
               </Grid>
             </Grid>

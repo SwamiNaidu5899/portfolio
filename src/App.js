@@ -4,6 +4,7 @@ import { ThemeProvider as MuiThemeProvider, createTheme, CssBaseline } from '@mu
 import Header from './components/Header';
 import Banner from './components/Banner';
 import TechStack from './components/TechStack';
+import Footer from './components/Footer';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -37,6 +38,7 @@ const App = () => {
       <Header darkMode={darkMode} toggleTheme={toggleTheme} />
       <Banner/>
       <TechStack/>
+      <Footer/>
     </MuiThemeProvider>
   );
 };
