@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battery Status</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #battery-status {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Battery Status Example</h1>
+  <div id="battery-status">Loading battery status...</div>
+
+  <script>
+    // Check if Battery API is available
+    console.log(navigator.getBattery());
+    
+    if (navigator.getBattery) {        
+      navigator.getBattery().then(function(battery) {
+        // Update the status when the battery info is available
+        function updateBatteryStatus() {
+          const statusElement = document.getElementById("battery-status");
+          const chargingStatus = battery.charging ? "Charging" : "Not charging";
+          const batteryLevel = (battery.level * 100).toFixed(0) + "%";
+
+          statusElement.innerHTML = `Battery Level: ${batteryLevel} | Status: ${chargingStatus}`;
+        }
+
+        // Initial update
+        updateBatteryStatus();
+
+        // Listen for changes in battery status
+        battery.addEventListener('levelchange', updateBatteryStatus);
+        battery.addEventListener('chargingchange', updateBatteryStatus);
+      });
+    } else {
+      // If Battery API is not supported, display an error message
+      document.getElementById("battery-status").innerHTML = "Battery API is not supported by this browser.";
+    }
+  </script>
+</body>
+</html>
