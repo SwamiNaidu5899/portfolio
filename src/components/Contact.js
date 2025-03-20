@@ -52,6 +52,9 @@ const InfoText = styled(Typography)(({ theme }) => ({
     color: theme.palette.primary.main,
     cursor: 'pointer',
   },
+  '@media (max-width: 600px)': {
+    fontSize: '1rem', // Reduce font size for smaller screens
+  },
 }));
 
 const Contact = ({ darkMode }) => {
@@ -62,7 +65,7 @@ const Contact = ({ darkMode }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      id='contact'
+      id=''
     >
       <Box
         sx={{

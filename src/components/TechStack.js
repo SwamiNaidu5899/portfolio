@@ -60,7 +60,6 @@ const TechStack = ({ darkMode }) => {
         background: darkMode ? 'rgb(21, 26, 36)' : '#f4f4f4',
         color: darkMode ? 'white' : 'black',
         transition: 'background 0.3s ease',
-        zIndex : "-1"
       }}
     >
       <Typography
