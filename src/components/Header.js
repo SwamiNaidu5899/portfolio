@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Box, Button, Switch, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Box,
+  Button,
+  Switch,
+  IconButton,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { motion } from 'framer-motion';
 
 const Header = ({ darkMode, toggleTheme }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -17,7 +30,7 @@ const Header = ({ darkMode, toggleTheme }) => {
     <AppBar
       position="sticky"
       sx={{
-        background: 'rgb(17, 24, 39)',
+        background: darkMode ? 'rgb(17, 24, 39)' : '#000',
         color: '#fff',
         zIndex: (theme) => theme.zIndex.drawer + 1,
       }}
@@ -38,18 +51,24 @@ const Header = ({ darkMode, toggleTheme }) => {
 
         {/* For small screens, show hamburger menu */}
         <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={toggleDrawer(true)}
-            sx={{
-              transform: drawerOpen ? 'rotate(90deg)' : 'rotate(0deg)',
-              transition: 'transform 0.3s ease',
-            }}
+          <motion.div
+            initial={{ rotate: 0 }}
+            animate={{ rotate: drawerOpen ? 90 : 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <MenuIcon />
-          </IconButton>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleDrawer(true)}
+              sx={{
+                transform: drawerOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+                transition: 'transform 0.3s ease',
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+          </motion.div>
         </Box>
 
         {/* For larger screens, show navigation buttons */}
@@ -66,62 +85,48 @@ const Header = ({ darkMode, toggleTheme }) => {
             border: '1px solid white',
           }}
         >
-          <Button
-            color="inherit"
-            href="#home"
-            sx={{
-              fontWeight: '500',
-              transition: 'transform 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.1)',
-                color: '#1976d2',
-              },
-            }}
-          >
-            Home
-          </Button>
-          <Button
-            color="inherit"
-            href="#experience"
-            sx={{
-              fontWeight: '500',
-              transition: 'transform 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.1)',
-                color: '#1976d2',
-              },
-            }}
-          >
-            Experience
-          </Button>
-          <Button
-            color="inherit"
-            href="#projects"
-            sx={{
-              fontWeight: '500',
-              transition: 'transform 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.1)',
-                color: '#1976d2',
-              },
-            }}
-          >
-            Projects
-          </Button>
-          <Button
-            color="inherit"
-            href="#contact"
-            sx={{
-              fontWeight: '500',
-              transition: 'transform 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.1)',
-                color: '#1976d2',
-              },
-            }}
-          >
-            Contact
-          </Button>
+          {['Home', 'Experience', 'Projects', 'Contact'].map((text, index) => (
+            <motion.div
+              key={text}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2, duration: 0.5 }}
+            >
+              <Button
+                color="inherit"
+                href={`#${text.toLowerCase()}`} // Updated to use anchors for smooth scrolling
+                sx={{
+                  fontWeight: '500',
+                  transition: 'transform 0.3s ease',
+                  '&:hover': {
+                    transform: 'scale(1.1)',
+                    color: '#1976d2',
+                  },
+                }}
+              >
+                {text}
+              </Button>
+            </motion.div>
+          ))}
+
+          {/* Theme Toggle Switch */}
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant="body2" sx={{ mr: 1 }}>
+              Dark Mode
+            </Typography>
+            <Switch
+              checked={darkMode}
+              onChange={toggleTheme}
+              sx={{
+                '& .MuiSwitch-thumb': {
+                  backgroundColor: darkMode ? '#fff' : '#1976d2',
+                },
+                '& .Mui-checked': {
+                  color: darkMode ? '#1976d2' : '#fff',
+                },
+              }}
+            />
+          </Box>
         </Box>
 
         {/* Drawer for small screen navigation */}
@@ -136,20 +141,19 @@ const Header = ({ darkMode, toggleTheme }) => {
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
           >
-            <List>
-              <ListItem button>
-                <ListItemText primary="Home" />
-              </ListItem>
-              <ListItem button>
-                <ListItemText primary="Experience" />
-              </ListItem>
-              <ListItem button>
-                <ListItemText primary="Projects" />
-              </ListItem>
-              <ListItem button>
-                <ListItemText primary="Contact" />
-              </ListItem>
-            </List>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+            >
+              <List>
+                {['Home', 'Experience', 'Projects', 'Contact'].map((text, index) => (
+                  <ListItem button key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                ))}
+              </List>
+            </motion.div>
           </Box>
         </Drawer>
       </Toolbar>

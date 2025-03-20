@@ -1,33 +1,39 @@
 import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
 import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { motion } from 'framer-motion'; // Import motion from Framer Motion
 
 import banner_img from '../assets/Banner-img.jpg';
 
-const Banner = () => {
+const Banner = ({ darkMode }) => {
   return (
     <Box
       sx={{
-        background: 'rgb(17, 24, 39)',
-        height: '90vh',
+        background: darkMode ? 'rgb(17, 24, 39)' : '#f4f4f4',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        color: 'white',
+        color: darkMode ? 'white' : 'black',
         flexDirection: 'column',
         position: 'relative',
         padding: { xs: '20px', sm: '40px' },
+        minHeight: '80vh', // Set minimum height to ensure content fits
+        textAlign: 'center', // Center text and elements
       }}
     >
-      <Box
-        sx={{
-          width: { xs: 100, sm: 150 },
-          height: { xs: 100, sm: 150 },
+      {/* Profile Image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1 }}
+        style={{
+          width: '200px',
+          height: '200px',
           borderRadius: '50%',
           overflow: 'hidden',
-          border: '5px solid white',
+          border: `5px solid ${darkMode ? 'white' : 'black'}`,
           position: 'absolute',
-          top: { xs: '55px', sm: '75px' },
+          top: '40px', // Position the image at the top
         }}
       >
         <img
@@ -39,34 +45,47 @@ const Banner = () => {
             objectFit: 'cover',
           }}
         />
-      </Box>
+      </motion.div>
 
-      <Box textAlign="center" sx={{ marginTop: { xs: '80px', sm: '90px' }, width: '100%' }}>
-        <Typography
-          variant="h3"
-          sx={{
-            fontWeight: 700,
-            color: '#fff',
-            lineHeight: 1.2,
-            fontSize: { xs: '2rem', sm: '3rem', md: '4rem' },
-          }}
+      {/* Text and Social Media Icons */}
+      <Box sx={{ width: '100%', marginTop: '160px' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 1 }}
         >
-          <span style={{ color: '#1976d2' }}>Hi, I'm</span>{' '}
-          <span style={{ color: '#fff' }}>Swami Naidu</span>
-        </Typography>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 700,
+              color: darkMode ? '#fff' : '#000',
+              lineHeight: 1.2,
+              fontSize: { xs: '2rem', sm: '3rem', md: '4rem' },
+            }}
+          >
+            <span style={{ color: '#1976d2' }}>Hi, I'm</span>{' '}
+            <span style={{ color: darkMode ? '#fff' : '#000' }}>Swami Naidu</span>
+          </Typography>
+        </motion.div>
 
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: 600,
-            color: '#90caf9',
-            marginTop: 1,
-            lineHeight: 1.4,
-            fontSize: { xs: '1.5rem', sm: '2rem' },
-          }}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 1 }}
         >
-          Frontend Developer
-        </Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 600,
+              color: darkMode ? '#90caf9' : '#1e88e5',
+              marginTop: 1,
+              lineHeight: 1.4,
+              fontSize: { xs: '1.5rem', sm: '2rem' },
+            }}
+          >
+            Frontend Developer
+          </Typography>
+        </motion.div>
 
         <Box
           sx={{
@@ -76,73 +95,49 @@ const Banner = () => {
             marginTop: 3,
           }}
         >
-          <IconButton
-            href="https://www.facebook.com"
-            target="_blank"
-            sx={{
-              color: 'white',
-              background : "black",
-              fontSize: '2rem',
-              transition: 'transform 0.3s ease, color 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.2)',
-                color: '#3b5998',
-              },
-            }}
-          >
-            <FaFacebook />
-          </IconButton>
-
-          <IconButton
-            href="https://twitter.com"
-            target="_blank"
-            sx={{
-              color: 'white',
-              background : "black",
-              fontSize: '2rem',
-              transition: 'transform 0.3s ease, color 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.2)',
-                color: '#00acee',
-              },
-            }}
-          >
-            <FaTwitter />
-          </IconButton>
-
-          <IconButton
-            href="https://www.linkedin.com"
-            target="_blank"
-            sx={{
-              color: 'white',
-              background : "black",
-              fontSize: '2rem',
-              transition: 'transform 0.3s ease, color 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.2)',
-                color: '#0a66c2',
-              },
-            }}
-          >
-            <FaLinkedin />
-          </IconButton>
-
-          <IconButton
-            href="https://github.com"
-            target="_blank"
-            sx={{
-              color: 'white',
-              background : "black",
-              fontSize: '2rem',
-              transition: 'transform 0.3s ease, color 0.3s ease',
-              '&:hover': {
-                transform: 'scale(1.2)',
-                color: '#171515',
-              },
-            }}
-          >
-            <FaGithub />
-          </IconButton>
+          {/* Social Media Icons */}
+          {['facebook', 'twitter', 'linkedin', 'github'].map((social, index) => (
+            <motion.div
+              key={social}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 + index * 0.1, duration: 1 }}
+            >
+              <IconButton
+                href={`https://www.${social}.com`}
+                target="_blank"
+                sx={{
+                  color: darkMode ? '#fff' : '#000', // Text color based on theme
+                  background: darkMode
+                    ? 'transparent'
+                    : '#f1f1f1', // Background color for light mode
+                  fontSize: '2rem',
+                  transition: 'transform 0.3s ease, color 0.3s ease, background-color 0.3s ease',
+                  padding: '12px',
+                  borderRadius: '50%',
+                  '&:hover': {
+                    transform: 'scale(1.2)',
+                    backgroundColor: darkMode
+                      ? 'rgba(255, 255, 255, 0.1)'
+                      : '#e0e0e0', // Hover background color for both themes
+                    color:
+                      social === 'facebook'
+                        ? '#3b5998'
+                        : social === 'twitter'
+                        ? '#00acee'
+                        : social === 'linkedin'
+                        ? '#0a66c2'
+                        : '#171515', // Change color on hover
+                  },
+                }}
+              >
+                {social === 'facebook' && <FaFacebook />}
+                {social === 'twitter' && <FaTwitter />}
+                {social === 'linkedin' && <FaLinkedin />}
+                {social === 'github' && <FaGithub />}
+              </IconButton>
+            </motion.div>
+          ))}
         </Box>
       </Box>
     </Box>
