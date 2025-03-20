@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 import MyProjects from './components/MyProjects';
 import Contact from './components/Contact';
 import Experience from './components/Experience';
-// import Experience from './components/Experience';
+import ScrollToTopButton from './components/ScrollToTop';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -48,11 +48,12 @@ const App = () => {
       <CssBaseline />
       <Header darkMode={darkMode} toggleTheme={toggleTheme} />
       <Banner darkMode={darkMode} id="home"/>
-      <TechStack darkMode={darkMode} id="experience"/>
+      <TechStack darkMode={darkMode} />
       <MyProjects darkMode={darkMode} id="projects"/>
       <Contact darkMode={darkMode} id='contact'/>
-      <Experience/>
+      <Experience darkMode={darkMode} id="experience"/>
       <Footer darkMode={darkMode} />
+      <ScrollToTopButton/>
     </MuiThemeProvider>
   );
 };

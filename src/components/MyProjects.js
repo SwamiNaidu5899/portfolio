@@ -103,6 +103,20 @@ const MyProjects = ({ darkMode }) => {
       >
         My Projects
       </Typography>
+      <Typography
+        variant="h6"
+        align="center"
+        style={{
+          color: darkMode ? '#ddd' : 'gray',
+          fontWeight: 500, // Medium weight for subheading
+          opacity: 1,
+          transition: 'opacity 0.6s ease',
+          marginBottom: '40px', // Adding space between headings and content
+        }}
+      >
+        Explore some of my recent work and personal projects
+      </Typography>
+
       <Grid container spacing={3} justifyContent="center">
         {projects.map((project, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>

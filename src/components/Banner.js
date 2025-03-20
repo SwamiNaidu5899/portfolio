@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
-import { FaFacebook, FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa'; // Importing Gmail (Envelope) icon
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
 
 import banner_img from '../assets/Banner-img.jpg';
@@ -96,7 +96,7 @@ const Banner = ({ darkMode }) => {
           }}
         >
           {/* Social Media Icons */}
-          {['facebook', 'twitter', 'linkedin', 'github'].map((social, index) => (
+          {['linkedin', 'github', 'email'].map((social, index) => (
             <motion.div
               key={social}
               initial={{ opacity: 0, y: 20 }}
@@ -104,13 +104,17 @@ const Banner = ({ darkMode }) => {
               transition={{ delay: 0.4 + index * 0.1, duration: 1 }}
             >
               <IconButton
-                href={`https://www.${social}.com`}
+                href={
+                  social === 'linkedin'
+                    ? 'https://www.linkedin.com/in/swami-naidu-datti-6916a329b/'
+                    : social === 'github'
+                    ? 'https://github.com/SwamiNaidu5899'
+                    : 'mailto:swaminaidu874@gmail.com' // Adding Gmail link
+                }
                 target="_blank"
                 sx={{
                   color: darkMode ? '#fff' : '#000', // Text color based on theme
-                  background: darkMode
-                    ? 'transparent'
-                    : '#f1f1f1', // Background color for light mode
+                  background: darkMode ? 'transparent' : '#f1f1f1', // Background color for light mode
                   fontSize: '2rem',
                   transition: 'transform 0.3s ease, color 0.3s ease, background-color 0.3s ease',
                   padding: '12px',
@@ -120,21 +124,17 @@ const Banner = ({ darkMode }) => {
                     backgroundColor: darkMode
                       ? 'rgba(255, 255, 255, 0.1)'
                       : '#e0e0e0', // Hover background color for both themes
-                    color:
-                      social === 'facebook'
-                        ? '#3b5998'
-                        : social === 'twitter'
-                        ? '#00acee'
-                        : social === 'linkedin'
-                        ? '#0a66c2'
-                        : '#171515', // Change color on hover
+                    color: social === 'linkedin'
+                      ? '#0a66c2'
+                      : social === 'github'
+                      ? '#171515'
+                      : '#d32f2f', // Gmail icon hover color
                   },
                 }}
               >
-                {social === 'facebook' && <FaFacebook />}
-                {social === 'twitter' && <FaTwitter />}
                 {social === 'linkedin' && <FaLinkedin />}
                 {social === 'github' && <FaGithub />}
+                {social === 'email' && <FaEnvelope />} {/* Gmail (Envelope) icon */}
               </IconButton>
             </motion.div>
           ))}

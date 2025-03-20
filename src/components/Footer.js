@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Typography, Link } from '@mui/material';
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'; // Only the required icons
 
 const Footer = ({ darkMode }) => {
   return (
@@ -26,8 +26,9 @@ const Footer = ({ darkMode }) => {
 
         {/* Social Media Links */}
         <Grid item xs={12} sm={6} style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+          {/* GitHub */}
           <Link
-            href="https://github.com"
+            href="https://github.com/SwamiNaidu5899"
             target="_blank"
             style={{
               color: darkMode ? 'white' : 'black', // Icon color based on theme
@@ -37,8 +38,10 @@ const Footer = ({ darkMode }) => {
           >
             <FaGithub size={30} />
           </Link>
+
+          {/* LinkedIn */}
           <Link
-            href="https://www.linkedin.com"
+            href="https://www.linkedin.com/in/swami-naidu-datti-6916a329b/"
             target="_blank"
             style={{
               color: darkMode ? 'white' : 'black',
@@ -48,8 +51,10 @@ const Footer = ({ darkMode }) => {
           >
             <FaLinkedin size={30} />
           </Link>
+
+          {/* Gmail */}
           <Link
-            href="https://twitter.com"
+            href="mailto:swaminaidu874@gmail.com"
             target="_blank"
             style={{
               color: darkMode ? 'white' : 'black',
@@ -57,18 +62,7 @@ const Footer = ({ darkMode }) => {
               transition: 'color 0.3s ease',
             }}
           >
-            <FaTwitter size={30} />
-          </Link>
-          <Link
-            href="https://www.instagram.com"
-            target="_blank"
-            style={{
-              color: darkMode ? 'white' : 'black',
-              marginRight: '20px',
-              transition: 'color 0.3s ease',
-            }}
-          >
-            <FaInstagram size={30} />
+            <FaEnvelope size={30} /> {/* Gmail icon */}
           </Link>
         </Grid>
         

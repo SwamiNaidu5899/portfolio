@@ -108,12 +108,24 @@ const Header = ({ darkMode, toggleTheme }) => {
 
       {/* Hamburger Menu for small screens */}
       <IconButton
-        edge="end"
-        color="inherit"
-        aria-label="menu"
-        sx={{ display: { xs: 'block', sm: 'none' } }}
-        onClick={toggleDrawer(true)}
-      >
+      edge="end"
+      // color="inherit"
+      aria-label="menu"
+      sx={{
+        display: { xs: 'block', sm: 'none' },
+        position: 'fixed',
+        top: 10,
+        right : 20,
+        zIndex: 1000000,
+        background: 'black', // Beautiful gradient
+        color: 'white',
+        borderRadius: '50%', // Circular button
+        padding: '15px',
+        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)', // Shadow for depth
+        transition: 'all 0.3s ease', // Smooth transition for hover effects
+      }}
+      onClick={toggleDrawer(true)}
+    >
         <MenuIcon />
       </IconButton>
 
