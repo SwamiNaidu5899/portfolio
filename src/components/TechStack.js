@@ -57,9 +57,10 @@ const TechStack = ({ darkMode }) => {
       ref={ref}
       style={{
         padding: '20px',
-        background: darkMode ? 'rgb(17, 24, 39)' : '#f4f4f4',
+        background: darkMode ? 'rgb(21, 26, 36)' : '#f4f4f4',
         color: darkMode ? 'white' : 'black',
         transition: 'background 0.3s ease',
+        zIndex : "-1"
       }}
     >
       <Typography
