@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Typography, Paper } from '@mui/material';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs,  FaGithub, FaDatabase, FaAws,FaCircle,FaPaperPlane,FaRobot,FaDesktop,FaCloud,FaServer } from 'react-icons/fa';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGithub, FaDatabase, FaAws, FaCircle, FaPaperPlane, FaRobot, FaDesktop, FaCloud, FaServer } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer'; // Import Intersection Observer
 
@@ -60,29 +60,30 @@ const TechStack = ({ darkMode }) => {
         background: darkMode ? 'rgb(21, 26, 36)' : '#f4f4f4',
         color: darkMode ? 'white' : 'black',
         transition: 'background 0.3s ease',
+        maxWidth: '1200px', // Limit max width on larger screens
+        margin: '0 auto', // Center the content
       }}
     >
-   <Typography
-  variant="h5"
-  gutterBottom
-  align="center"
-  sx={{
-    fontWeight: 700,
-    fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }, // Responsive font size
-    marginBottom: '30px', // Space below the heading
-    color: darkMode ? '#fff' : '#000', // Color changes based on dark mode
-    opacity: inView ? 1 : 0, // Fade-in effect when section comes into view
-    transition: 'opacity 0.6s ease, color 0.6s ease', // Smooth transition for opacity and color
-    letterSpacing: '1px', // Add slight spacing between letters for better readability
-  }}
->
-  My Tech Stack
-</Typography>
-
+      <Typography
+        variant="h5"
+        gutterBottom
+        align="center"
+        sx={{
+          fontWeight: 700,
+          fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }, // Responsive font size
+          marginBottom: '30px', // Space below the heading
+          color: darkMode ? '#fff' : '#000', // Color changes based on dark mode
+          opacity: inView ? 1 : 0, // Fade-in effect when section comes into view
+          transition: 'opacity 0.6s ease, color 0.6s ease', // Smooth transition for opacity and color
+          letterSpacing: '1px', // Add slight spacing between letters for better readability
+        }}
+      >
+        My Tech Stack
+      </Typography>
 
       <Grid container spacing={4} justifyContent="center">
         {/* Frontend Section */}
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3} lg={2}>
           <motion.div
             initial={{ opacity: 0, y: 20 }} // Start slightly offscreen
             animate={{
@@ -154,161 +155,150 @@ const TechStack = ({ darkMode }) => {
           </motion.div>
         </Grid>
 
-      {/* Backend Section */}
-<Grid item xs={12} sm={6} md={3}>
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{
-      opacity: 1,
-      y: 0,
-      scale: 1 + (enterCount * 0.05),
-    }}
-    transition={{
-      duration: 0.8,
-      ease: 'easeOut',
-      delay: 0.4,
-    }}
-  >
-    <Paper
-      elevation={3}
-      sx={{
-        background: darkMode ? 'rgb(31, 41, 55)' : '#f1f1f1',
-        padding: '20px',
-        textAlign: 'center',
-        height: '55vh',
-      }}
-    >
-      <Typography
-        variant="h6"
-        sx={{
-          color: darkMode ? 'white' : 'black',
-          fontWeight: 600,
-          fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
-        }}
-      >
-        Backend
-      </Typography>
-      <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
-        {/* Update the tech array to only include Node.js and Express */}
-        {['nodejs', 'express'].map((tech, index) => (
-          <Grid item key={tech}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                scale: 1 + (enterCount * 0.05),
-              }}
-              transition={{
-                delay: 0.3 + index * 0.2,
-                duration: 0.6,
+        {/* Backend Section */}
+        <Grid item xs={12} sm={6} md={3} lg={2}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1 + (enterCount * 0.05),
+            }}
+            transition={{
+              duration: 0.8,
+              ease: 'easeOut',
+              delay: 0.4,
+            }}
+          >
+            <Paper
+              elevation={3}
+              sx={{
+                background: darkMode ? 'rgb(31, 41, 55)' : '#f1f1f1',
+                padding: '20px',
+                textAlign: 'center',
+                height: '55vh',
               }}
             >
-              <div
-                style={iconStyle}
-                onMouseEnter={handleHover}
-                onMouseLeave={handleMouseLeave}
+              <Typography
+                variant="h6"
+                sx={{
+                  color: darkMode ? 'white' : 'black',
+                  fontWeight: 600,
+                  fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
+                }}
               >
-                {/* Add corresponding icons and labels for Node.js and Express.js */}
-                {tech === 'nodejs' && <FaNodeJs size={40} color="#3e8e41" />}
-                {tech === 'express' && <FaCircle size={40} color="#000" />} {/* You can use any Express.js icon here */}
-                <Typography variant="body2" style={{ color: darkMode ? '#fff' : '#000' }}>
-                  {tech === 'nodejs' && 'Node.js'}
-                  {tech === 'express' && 'Express.js'}
-                </Typography>
-              </div>
-            </motion.div>
-          </Grid>
-        ))}
-      </Grid>
-    </Paper>
-  </motion.div>
-</Grid>
-
+                Backend
+              </Typography>
+              <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
+                {['nodejs', 'express'].map((tech, index) => (
+                  <Grid item key={tech}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                        scale: 1 + (enterCount * 0.05),
+                      }}
+                      transition={{
+                        delay: 0.3 + index * 0.2,
+                        duration: 0.6,
+                      }}
+                    >
+                      <div
+                        style={iconStyle}
+                        onMouseEnter={handleHover}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        {tech === 'nodejs' && <FaNodeJs size={40} color="#3e8e41" />}
+                        {tech === 'express' && <FaCircle size={40} color="#000" />}
+                        <Typography variant="body2" style={{ color: darkMode ? '#fff' : '#000' }}>
+                          {tech === 'nodejs' && 'Node.js'}
+                          {tech === 'express' && 'Express.js'}
+                        </Typography>
+                      </div>
+                    </motion.div>
+                  </Grid>
+                ))}
+              </Grid>
+            </Paper>
+          </motion.div>
+        </Grid>
 
         {/* Tools Section */}
-        <Grid item xs={12} sm={6} md={3}>
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{
-      opacity: 1,
-      y: 0,
-      scale: 1 + (enterCount * 0.05),
-    }}
-    transition={{
-      duration: 0.8,
-      ease: 'easeOut',
-      delay: 0.6,
-    }}
-  >
-    <Paper
-      elevation={3}
-      sx={{
-        background: darkMode ? 'rgb(31, 41, 55)' : '#f1f1f1',
-        padding: '20px',
-        textAlign: 'center',
-        height: '55vh',
-      }}
-    >
-      <Typography
-        variant="h6"
-        sx={{
-          color: darkMode ? 'white' : 'black',
-          fontWeight: 600,
-          fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
-        }}
-      >
-        Tools
-      </Typography>
-      <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
-        {/* Updated tech array with new tools */}
-        {['github', 'postman', 'chatgpt', 'vercel', ].map((tech, index) => (
-          <Grid item key={tech}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                scale: 1 + (enterCount * 0.05),
-              }}
-              transition={{
-                delay: 0.3 + index * 0.2,
-                duration: 0.6,
+        <Grid item xs={12} sm={6} md={3} lg={2}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              scale: 1 + (enterCount * 0.05),
+            }}
+            transition={{
+              duration: 0.8,
+              ease: 'easeOut',
+              delay: 0.6,
+            }}
+          >
+            <Paper
+              elevation={3}
+              sx={{
+                background: darkMode ? 'rgb(31, 41, 55)' : '#f1f1f1',
+                padding: '20px',
+                textAlign: 'center',
+                height: '55vh',
               }}
             >
-              <div
-                style={iconStyle}
-                onMouseEnter={handleHover}
-                onMouseLeave={handleMouseLeave}
+              <Typography
+                variant="h6"
+                sx={{
+                  color: darkMode ? 'white' : 'black',
+                  fontWeight: 600,
+                  fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
+                }}
               >
-                {/* Render icons for new tools */}
-                {tech === 'github' && <FaGithub size={40} color="#3e4b48" />}
-                {tech === 'postman' && <FaPaperPlane size={40} color="#FF6C37" />} {/* Postman icon */}
-                {tech === 'chatgpt' && <FaRobot size={40} color="#24a4c7" />} {/* ChatGPT icon */}
-                {tech === 'insomnia' && <FaDesktop size={40} color="#f0f0f0" />} {/* Insomnia icon (used a placeholder here) */}
-                {tech === 'vercel' && <FaCloud size={40} color="#000000" />} {/* Vercel icon (Placeholder) */}
-                {tech === 'render' && <FaServer size={40} color="#ff5c8d" />} {/* Render icon (Placeholder) */}
-
-                <Typography variant="body2" style={{ color: darkMode ? '#fff' : '#000' }}>
-                  {tech === 'github' && 'GitHub'}
-                  {tech === 'postman' && 'Postman'}
-                  {tech === 'chatgpt' && 'ChatGPT'}
-                  {tech === 'insomnia' && 'Insomnia'}
-                  {tech === 'vercel' && 'Vercel'}
-                  {tech === 'render' && 'Render'}
-                </Typography>
-              </div>
-            </motion.div>
-          </Grid>
-        ))}
-      </Grid>
-    </Paper>
-  </motion.div>
-</Grid>
-
+                Tools
+              </Typography>
+              <Grid container spacing={2} justifyContent="space-around" style={{ marginTop: '10px' }}>
+                {['github', 'postman', 'chatgpt', 'vercel'].map((tech, index) => (
+                  <Grid item key={tech}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                        scale: 1 + (enterCount * 0.05),
+                      }}
+                      transition={{
+                        delay: 0.3 + index * 0.2,
+                        duration: 0.6,
+                      }}
+                    >
+                      <div
+                        style={iconStyle}
+                        onMouseEnter={handleHover}
+                        onMouseLeave={handleMouseLeave}
+                      >
+                        {tech === 'github' && <FaGithub size={40} color="#3e4b48" />}
+                        {tech === 'postman' && <FaPaperPlane size={40} color="#FF6C37" />}
+                        {tech === 'chatgpt' && <FaRobot size={40} color="#24a4c7" />}
+                        {tech === 'vercel' && <FaCloud size={40} color="#000000" />}
+                        <Typography variant="body2" style={{ color: darkMode ? '#fff' : '#000' }}>
+                          {tech === 'github' && 'GitHub'}
+                          {tech === 'postman' && 'Postman'}
+                          {tech === 'chatgpt' && 'ChatGPT'}
+                          {tech === 'vercel' && 'Vercel'}
+                        </Typography>
+                      </div>
+                    </motion.div>
+                  </Grid>
+                ))}
+              </Grid>
+            </Paper>
+          </motion.div>
+        </Grid>
 
         {/* Database Section */}
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid item xs={12} sm={6} md={3} lg={2}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{

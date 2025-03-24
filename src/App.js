@@ -50,8 +50,8 @@ const App = () => {
       <Banner darkMode={darkMode} id="home"/>
       <TechStack darkMode={darkMode} />
       <MyProjects darkMode={darkMode} id="projects"/>
-      <Contact darkMode={darkMode} id='contact'/>
       <Experience darkMode={darkMode} id="experience"/>
+      <Contact darkMode={darkMode} id='contact'/>
       <Footer darkMode={darkMode} />
       <ScrollToTopButton/>
     </MuiThemeProvider>
